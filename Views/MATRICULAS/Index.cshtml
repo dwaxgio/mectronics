@@ -12,40 +12,44 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NOTA)
+            CLASE
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FECHA_NOTA)
+            ALUMNO
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ALUMNOS.DOCUMENTO)
+            NOTA
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CLASES.ID)
+            FECHA DE LA NOTA
         </th>
+
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOTA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FECHA_NOTA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ALUMNOS.DOCUMENTO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLASES.ID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CLASES.ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ALUMNOS.DOCUMENTO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NOTA)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FECHA_NOTA)
+    </td>
+
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    </td>
+</tr>
 }
 
 </table>
