@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MECTRONICS.Models.CLASES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MATERIAS.DESCRIPCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROFESORES.DOCUMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SALONES.DESCRIPCION)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MATERIAS.DESCRIPCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROFESORES.DOCUMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SALONES.DESCRIPCION)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

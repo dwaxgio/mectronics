@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ae57ef87d8d49dfb8b11d9efa0a5d55" Name="Diagram1">
+        <EntityTypeShape EntityType="MectronicsModel.ALUMNOS" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MectronicsModel.CLASES" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MectronicsModel.MATERIAS" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MectronicsModel.MATRICULAS" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MectronicsModel.PROFESORES" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MectronicsModel.SALONES" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="MectronicsModel.FK__MATRICULA__ID_AL__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="MectronicsModel.FK__CLASES__ID_MATER__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="MectronicsModel.FK__CLASES__ID_PROFE__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="MectronicsModel.FK__CLASES__ID_SALON__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="MectronicsModel.FK__MATRICULA__ID_CL__31EC6D26" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

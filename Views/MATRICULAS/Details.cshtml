@@ -1,0 +1,50 @@
+﻿@model MECTRONICS.Models.MATRICULAS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MATRICULAS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_NOTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_NOTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ALUMNOS.DOCUMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ALUMNOS.DOCUMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLASES.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLASES.ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

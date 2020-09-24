@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MectronicsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ALUMNOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DOCUMENTO" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="APELLIDO" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CORREO" Type="nvarchar(max)" />
+          <Property Name="FECHA_INGRESO" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLASES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PROFESOR" Type="int" />
+          <Property Name="ID_MATERIA" Type="int" />
+          <Property Name="ID_SALON" Type="int" />
+        </EntityType>
+        <EntityType Name="MATERIAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MATRICULAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CLASE" Type="int" />
+          <Property Name="ID_ALUMNO" Type="int" />
+          <Property Name="NOTA" Type="int" />
+          <Property Name="FECHA_NOTA" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROFESORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DOCUMENTO" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="APELLIDO" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CORREO" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SALONES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CLASES__ID_MATER__300424B4">
+          <End Role="MATERIAS" Type="Self.MATERIAS" Multiplicity="0..1" />
+          <End Role="CLASES" Type="Self.CLASES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATERIAS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLASES">
+              <PropertyRef Name="ID_MATERIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLASES__ID_PROFE__2F10007B">
+          <End Role="PROFESORES" Type="Self.PROFESORES" Multiplicity="0..1" />
+          <End Role="CLASES" Type="Self.CLASES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLASES">
+              <PropertyRef Name="ID_PROFESOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLASES__ID_SALON__30F848ED">
+          <End Role="SALONES" Type="Self.SALONES" Multiplicity="0..1" />
+          <End Role="CLASES" Type="Self.CLASES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALONES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLASES">
+              <PropertyRef Name="ID_SALON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MATRICULA__ID_AL__32E0915F">
+          <End Role="ALUMNOS" Type="Self.ALUMNOS" Multiplicity="0..1" />
+          <End Role="MATRICULAS" Type="Self.MATRICULAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ALUMNOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATRICULAS">
+              <PropertyRef Name="ID_ALUMNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MATRICULA__ID_CL__31EC6D26">
+          <End Role="CLASES" Type="Self.CLASES" Multiplicity="0..1" />
+          <End Role="MATRICULAS" Type="Self.MATRICULAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLASES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATRICULAS">
+              <PropertyRef Name="ID_CLASE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MectronicsModelStoreContainer">
+          <EntitySet Name="ALUMNOS" EntityType="Self.ALUMNOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLASES" EntityType="Self.CLASES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MATERIAS" EntityType="Self.MATERIAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MATRICULAS" EntityType="Self.MATRICULAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFESORES" EntityType="Self.PROFESORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALONES" EntityType="Self.SALONES" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CLASES__ID_MATER__300424B4" Association="Self.FK__CLASES__ID_MATER__300424B4">
+            <End Role="MATERIAS" EntitySet="MATERIAS" />
+            <End Role="CLASES" EntitySet="CLASES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLASES__ID_PROFE__2F10007B" Association="Self.FK__CLASES__ID_PROFE__2F10007B">
+            <End Role="PROFESORES" EntitySet="PROFESORES" />
+            <End Role="CLASES" EntitySet="CLASES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLASES__ID_SALON__30F848ED" Association="Self.FK__CLASES__ID_SALON__30F848ED">
+            <End Role="SALONES" EntitySet="SALONES" />
+            <End Role="CLASES" EntitySet="CLASES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MATRICULA__ID_AL__32E0915F" Association="Self.FK__MATRICULA__ID_AL__32E0915F">
+            <End Role="ALUMNOS" EntitySet="ALUMNOS" />
+            <End Role="MATRICULAS" EntitySet="MATRICULAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MATRICULA__ID_CL__31EC6D26" Association="Self.FK__MATRICULA__ID_CL__31EC6D26">
+            <End Role="CLASES" EntitySet="CLASES" />
+            <End Role="MATRICULAS" EntitySet="MATRICULAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MectronicsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ALUMNOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DOCUMENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="APELLIDO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CORREO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FECHA_INGRESO" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MATRICULAS" Relationship="Self.FK__MATRICULA__ID_AL__32E0915F" FromRole="ALUMNOS" ToRole="MATRICULAS" />
+        </EntityType>
+        <EntityType Name="CLASES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PROFESOR" Type="Int32" />
+          <Property Name="ID_MATERIA" Type="Int32" />
+          <Property Name="ID_SALON" Type="Int32" />
+          <NavigationProperty Name="MATERIAS" Relationship="Self.FK__CLASES__ID_MATER__300424B4" FromRole="CLASES" ToRole="MATERIAS" />
+          <NavigationProperty Name="PROFESORES" Relationship="Self.FK__CLASES__ID_PROFE__2F10007B" FromRole="CLASES" ToRole="PROFESORES" />
+          <NavigationProperty Name="SALONES" Relationship="Self.FK__CLASES__ID_SALON__30F848ED" FromRole="CLASES" ToRole="SALONES" />
+          <NavigationProperty Name="MATRICULAS" Relationship="Self.FK__MATRICULA__ID_CL__31EC6D26" FromRole="CLASES" ToRole="MATRICULAS" />
+        </EntityType>
+        <EntityType Name="MATERIAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CLASES" Relationship="Self.FK__CLASES__ID_MATER__300424B4" FromRole="MATERIAS" ToRole="CLASES" />
+        </EntityType>
+        <EntityType Name="MATRICULAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CLASE" Type="Int32" />
+          <Property Name="ID_ALUMNO" Type="Int32" />
+          <Property Name="NOTA" Type="Int32" />
+          <Property Name="FECHA_NOTA" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ALUMNOS" Relationship="Self.FK__MATRICULA__ID_AL__32E0915F" FromRole="MATRICULAS" ToRole="ALUMNOS" />
+          <NavigationProperty Name="CLASES" Relationship="Self.FK__MATRICULA__ID_CL__31EC6D26" FromRole="MATRICULAS" ToRole="CLASES" />
+        </EntityType>
+        <EntityType Name="PROFESORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DOCUMENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="APELLIDO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CORREO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CLASES" Relationship="Self.FK__CLASES__ID_PROFE__2F10007B" FromRole="PROFESORES" ToRole="CLASES" />
+        </EntityType>
+        <EntityType Name="SALONES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CLASES" Relationship="Self.FK__CLASES__ID_SALON__30F848ED" FromRole="SALONES" ToRole="CLASES" />
+        </EntityType>
+        <Association Name="FK__MATRICULA__ID_AL__32E0915F">
+          <End Role="ALUMNOS" Type="Self.ALUMNOS" Multiplicity="0..1" />
+          <End Role="MATRICULAS" Type="Self.MATRICULAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ALUMNOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATRICULAS">
+              <PropertyRef Name="ID_ALUMNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLASES__ID_MATER__300424B4">
+          <End Role="MATERIAS" Type="Self.MATERIAS" Multiplicity="0..1" />
+          <End Role="CLASES" Type="Self.CLASES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATERIAS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLASES">
+              <PropertyRef Name="ID_MATERIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLASES__ID_PROFE__2F10007B">
+          <End Role="PROFESORES" Type="Self.PROFESORES" Multiplicity="0..1" />
+          <End Role="CLASES" Type="Self.CLASES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLASES">
+              <PropertyRef Name="ID_PROFESOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLASES__ID_SALON__30F848ED">
+          <End Role="SALONES" Type="Self.SALONES" Multiplicity="0..1" />
+          <End Role="CLASES" Type="Self.CLASES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALONES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLASES">
+              <PropertyRef Name="ID_SALON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MATRICULA__ID_CL__31EC6D26">
+          <End Role="CLASES" Type="Self.CLASES" Multiplicity="0..1" />
+          <End Role="MATRICULAS" Type="Self.MATRICULAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLASES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MATRICULAS">
+              <PropertyRef Name="ID_CLASE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MectronicsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ALUMNOS" EntityType="Self.ALUMNOS" />
+          <EntitySet Name="CLASES" EntityType="Self.CLASES" />
+          <EntitySet Name="MATERIAS" EntityType="Self.MATERIAS" />
+          <EntitySet Name="MATRICULAS" EntityType="Self.MATRICULAS" />
+          <EntitySet Name="PROFESORES" EntityType="Self.PROFESORES" />
+          <EntitySet Name="SALONES" EntityType="Self.SALONES" />
+          <AssociationSet Name="FK__MATRICULA__ID_AL__32E0915F" Association="Self.FK__MATRICULA__ID_AL__32E0915F">
+            <End Role="ALUMNOS" EntitySet="ALUMNOS" />
+            <End Role="MATRICULAS" EntitySet="MATRICULAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLASES__ID_MATER__300424B4" Association="Self.FK__CLASES__ID_MATER__300424B4">
+            <End Role="MATERIAS" EntitySet="MATERIAS" />
+            <End Role="CLASES" EntitySet="CLASES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLASES__ID_PROFE__2F10007B" Association="Self.FK__CLASES__ID_PROFE__2F10007B">
+            <End Role="PROFESORES" EntitySet="PROFESORES" />
+            <End Role="CLASES" EntitySet="CLASES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLASES__ID_SALON__30F848ED" Association="Self.FK__CLASES__ID_SALON__30F848ED">
+            <End Role="SALONES" EntitySet="SALONES" />
+            <End Role="CLASES" EntitySet="CLASES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MATRICULA__ID_CL__31EC6D26" Association="Self.FK__MATRICULA__ID_CL__31EC6D26">
+            <End Role="CLASES" EntitySet="CLASES" />
+            <End Role="MATRICULAS" EntitySet="MATRICULAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MectronicsModelStoreContainer" CdmEntityContainer="MectronicsEntities">
+          <EntitySetMapping Name="ALUMNOS">
+            <EntityTypeMapping TypeName="MectronicsModel.ALUMNOS">
+              <MappingFragment StoreEntitySet="ALUMNOS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DOCUMENTO" ColumnName="DOCUMENTO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="FECHA_INGRESO" ColumnName="FECHA_INGRESO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLASES">
+            <EntityTypeMapping TypeName="MectronicsModel.CLASES">
+              <MappingFragment StoreEntitySet="CLASES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_PROFESOR" ColumnName="ID_PROFESOR" />
+                <ScalarProperty Name="ID_MATERIA" ColumnName="ID_MATERIA" />
+                <ScalarProperty Name="ID_SALON" ColumnName="ID_SALON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MATERIAS">
+            <EntityTypeMapping TypeName="MectronicsModel.MATERIAS">
+              <MappingFragment StoreEntitySet="MATERIAS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MATRICULAS">
+            <EntityTypeMapping TypeName="MectronicsModel.MATRICULAS">
+              <MappingFragment StoreEntitySet="MATRICULAS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_CLASE" ColumnName="ID_CLASE" />
+                <ScalarProperty Name="ID_ALUMNO" ColumnName="ID_ALUMNO" />
+                <ScalarProperty Name="NOTA" ColumnName="NOTA" />
+                <ScalarProperty Name="FECHA_NOTA" ColumnName="FECHA_NOTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFESORES">
+            <EntityTypeMapping TypeName="MectronicsModel.PROFESORES">
+              <MappingFragment StoreEntitySet="PROFESORES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DOCUMENTO" ColumnName="DOCUMENTO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALONES">
+            <EntityTypeMapping TypeName="MectronicsModel.SALONES">
+              <MappingFragment StoreEntitySet="SALONES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
